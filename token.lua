@@ -44,7 +44,7 @@ keyword( "break" )
 keyword( "continue" )
 keyword( "using" )
 keyword( "const" )
-token( "digit", "%d+" )
+token( "digits", "(%d+)" )
 
 
 token( "symbol", "(_[_%w]*)" )
