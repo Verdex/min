@@ -20,7 +20,7 @@ function tryPatterns( input, start )
     
             table.remove( result, #result )
 
-            return { token = t.name;  result }, stop
+            return { token = t.name; values = result }, stop
         end
         ::continue::
     end
