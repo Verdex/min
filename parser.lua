@@ -82,9 +82,24 @@ function while_stm()
 end
 
 function foreach_stm()
+    local c = ct() 
+    is( "symbol" )
+    local var_name = c.values[1]
+
+    is( "in" )
+
+    local seq_expr = expr()
+
+    is( "lcurly" )
+
+    local body = {}
+    while not try( "rcurly" ) do
+        local s = stm()
+        body[#body + 1] = s
+    end
+
+    return { name = "foreach"; var_name = var_name; seq_expr = seq_expr; body = body }
 end
-
-
 
 
 
