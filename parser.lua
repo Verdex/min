@@ -47,9 +47,9 @@ function stm()
 
     if false then
 
-    elseif is( "while" ) then
+    elseif try( "while" ) then
         return while_stm()
-    elseif is( "foreach" ) then
+    elseif try( "foreach" ) then
         return foreach_stm()
     else
         error( "no known statement found" )
@@ -61,7 +61,7 @@ function expr()
 
     if false then
 
-    elseif is( "digits" ) then
+    elseif try( "digits" ) then
         return { name = "digits", value = c.values[1] }
     else
         error( "no known expression found" )
@@ -71,9 +71,8 @@ end
 function while_stm()
     local test_expr = expr()    
     is( "lcurly" )
-    -- then zero or more statements
-    local body = {}
 
+    local body = {}
     while not try( "rcurly" ) do
         local s = stm()
         body[#body + 1] = s
