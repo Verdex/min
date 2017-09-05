@@ -46,7 +46,7 @@ keyword( "continue" )
 keyword( "using" )
 keyword( "const" )
 token( "digits", "(%d+)" )
-
+token( "string", [[%"(.-)%"]] )
 
 token( "symbol", "(_[_%w]*)" )
 token( "symbol", "([%a][_%w]*)" )

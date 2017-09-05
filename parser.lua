@@ -67,6 +67,8 @@ function expr()
         return { name = "var", value = c.values[1] }
     elseif try( "digits" ) then
         return { name = "digits", value = c.values[1] }
+    elseif try( "string" ) then
+        return { name = "string", value = c.values[1] }
     else
         error( "no known expression found" )
     end
