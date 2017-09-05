@@ -121,4 +121,16 @@ function var_stm()
     return { name = "assign"; var_name = var_name; assign_expr = assign_expr }
 end
 
+-- This parser needs to be called and consumed by an if parser
+function elseif_stm()
+    is( "lcurly" )
+
+    local body = {}
+    while not try( "rcurly" ) do
+        local s = stm()
+        body[#body + 1] = s
+    end
+
+    return body
+end
 
