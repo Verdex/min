@@ -53,6 +53,8 @@ function stm()
         return while_stm()
     elseif try( "foreach" ) then
         return foreach_stm()
+    elseif try( "if" ) then
+        return if_stm()
     else
         error( "no known statement found" )
     end
@@ -119,6 +121,30 @@ function var_stm()
     is( "semicolon" ) 
 
     return { name = "assign"; var_name = var_name; assign_expr = assign_expr }
+end
+
+function if_stm()
+    is( "lcurly" )
+
+    local body = {}
+    while not try( "rcurly" ) do
+        local s = stm()
+        body[#body + 1] = s
+    end
+
+
+    -- TODO this needs to be in a loop
+    if try( "elseif" ) then
+
+    end
+
+
+    if try( "else" ) then
+
+    end
+
+
+    -- TODO return
 end
 
 -- This parser needs to be called and consumed by an if parser
