@@ -134,3 +134,15 @@ function elseif_stm()
     return body
 end
 
+-- This parser needs to be called and consumed by an if parser
+function else_stm()  
+    is( "lcurly" )
+
+    local body = {}
+    while not try( "rcurly" ) do
+        local s = stm()
+        body[#body + 1] = s
+    end
+
+    return body
+end
