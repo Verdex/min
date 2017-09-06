@@ -124,6 +124,9 @@ function var_stm()
 end
 
 function if_stm()
+    
+    local test = expr()
+
     is( "lcurly" )
 
     local body = {}
@@ -132,23 +135,25 @@ function if_stm()
         body[#body + 1] = s
     end
 
-
     -- TODO this needs to be in a loop
-    if try( "elseif" ) then
-
+    local elseifs = {}
+    while try( "elseif" ) do
+        elseifs[#elseifs + 1] = elseif_stm()
     end
 
-
+    local _else
     if try( "else" ) then
-
+        _else = else_stm() 
     end
 
-
-    -- TODO return
+    return { name = "if"; test = test; body = body; elseifs = elseifs; _else = _else }
 end
 
 -- This parser needs to be called and consumed by an if parser
 function elseif_stm()
+
+    local test = expr()
+    
     is( "lcurly" )
 
     local body = {}
@@ -157,7 +162,7 @@ function elseif_stm()
         body[#body + 1] = s
     end
 
-    return body
+    return { body = body; test = test }
 end
 
 -- This parser needs to be called and consumed by an if parser
