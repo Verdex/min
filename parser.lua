@@ -135,7 +135,6 @@ function if_stm()
         body[#body + 1] = s
     end
 
-    -- TODO this needs to be in a loop
     local elseifs = {}
     while try( "elseif" ) do
         elseifs[#elseifs + 1] = elseif_stm()
@@ -149,7 +148,6 @@ function if_stm()
     return { name = "if"; test = test; body = body; elseifs = elseifs; _else = _else }
 end
 
--- This parser needs to be called and consumed by an if parser
 function elseif_stm()
 
     local test = expr()
@@ -165,7 +163,6 @@ function elseif_stm()
     return { body = body; test = test }
 end
 
--- This parser needs to be called and consumed by an if parser
 function else_stm()  
     is( "lcurly" )
 
