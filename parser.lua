@@ -65,6 +65,10 @@ function expr()
 
     if false then
 
+    elseif try( "lparen" ) then
+        local e = expr()
+        is( "rparen" )
+        return e
     elseif try( "symbol" ) then
         return { name = "var", value = c.values[1] }
     elseif try( "digits" ) then
