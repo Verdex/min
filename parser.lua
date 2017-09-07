@@ -60,12 +60,40 @@ function stm()
     end
 end
 
+function md_bin_expr()
+    local e1 = expr()
+
+    local es = {}
+    local c = ct()
+    while try( "star" ) or try( "div" ) do
+        -- TODO capture op type
+        es[#es + 1] = ps_bin_expr() 
+        c = ct()
+    end
+
+    return { e1, es }
+end
+
+function ps_bin_expr()
+    local e1 = expr()
+
+    local es = {}
+    local c = ct()
+    while try( "plus" ) or try( "neg" ) do
+        -- TODO capture op type
+        es[#es + 1] = expr() 
+        c = ct()
+    end
+
+    return { e1, es }
+end
+
 function expr()
     local c = ct()
 
     if false then
 
-    elseif try( "lparen" ) then
+    elseif try( "lparen" ) then -- TODO paren needs to *also* be at bin top and the intermediate bin stages 
         local e = expr()
         is( "rparen" )
         return e
