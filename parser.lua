@@ -60,8 +60,42 @@ function stm()
     end
 end
 
+function bin_expr()
+
+    local ops = { { name = "plus" }
+                , { name = "star" }
+                , { name = "final" }
+                }
+
+    return bin_expr_helper( ops, 1 )
+
+end
+
+function bin_expr_helper( list, index )
+    local e1
+    print( "blah : " .. index )
+    if list[index].name == "final" then
+        print( "final" )
+        return expr() 
+    elseif list[index].uni then
+        if try( list[index].name ) then
+            return { name = list[index].name; expr = bin_expr_helper( list, index + 1 ) }
+        else
+            return bin_expr_helper( list, index + 1 )
+        end
+    else
+        e1 = bin_expr_helper( list, index + 1 )
+    end
+
+    local es = { e1 }
+    while try( list[index].name ) do
+        es[#es+1] = bin_expr_helper( list, index + 1 ) 
+    end
+    return { name = list[index].name; exprs = es }
+end
+
 function md_bin_expr()
-    local e1 = expr()
+    local e1 = ps_bin_expr()
 
     local es = {}
     local c = ct()
@@ -75,7 +109,10 @@ function md_bin_expr()
 end
 
 function ps_bin_expr()
-    local e1 = expr()
+    --try( "plus" ) or try( "neg" )
+    -- TODO store result
+
+    local e1 = expr() 
 
     local es = {}
     local c = ct()
@@ -93,7 +130,7 @@ function expr()
 
     if false then
 
-    elseif try( "lparen" ) then -- TODO paren needs to *also* be at bin top and the intermediate bin stages 
+    elseif try( "lparen" ) then 
         local e = expr()
         is( "rparen" )
         return e
