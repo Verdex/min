@@ -99,37 +99,6 @@ function bin_expr_helper( list, index )
     end
 end
 
-function md_bin_expr()
-    local e1 = ps_bin_expr()
-
-    local es = {}
-    local c = ct()
-    while try( "star" ) or try( "div" ) do
-        -- TODO capture op type
-        es[#es + 1] = ps_bin_expr() 
-        c = ct()
-    end
-
-    return { e1, es }
-end
-
-function ps_bin_expr()
-    --try( "plus" ) or try( "neg" )
-    -- TODO store result
-
-    local e1 = expr() 
-
-    local es = {}
-    local c = ct()
-    while try( "plus" ) or try( "neg" ) do
-        -- TODO capture op type
-        es[#es + 1] = expr() 
-        c = ct()
-    end
-
-    return { e1, es }
-end
-
 function expr()
     local c = ct()
 
