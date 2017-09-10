@@ -31,7 +31,7 @@ function f( v )
             tabs = tabs + 1
             local o = f( h )
             tabs = tabs - 1
-            return 0
+            return o
         elseif type( h ) == "string" then
             return '"' .. h .. '"'
         elseif type( h ) == "number" then
@@ -49,12 +49,16 @@ function f( v )
 
     local vs = {} 
     for i, val in ipairs( v ) do
-        vs[#vs + 1] = i .. ": " .. dis( val )
+        if type( val ) == "table" then
+            vs[#vs + 1] = "\n" .. string.rep("    ", tabs) .. i .. ": " .. dis( val )
+        else
+            vs[#vs + 1] = i .. ": " .. dis( val )
+        end
     end
 
     local new_line = false
     for _, val in ipairs( vs ) do
-        if #val > 10 then
+        if #val > 15 then
             new_line = true
             break
         end
@@ -62,7 +66,7 @@ function f( v )
 
     if #vs > 0 then
         if new_line then
-            return table.concat( vs, ",\n" )
+            return table.concat( vs, ",\n" .. string.rep( "    ", tabs ) )
         else
             return table.concat( vs, ", " )
         end
@@ -73,7 +77,7 @@ function f( v )
     end
 
     for _, val in ipairs( vs ) do
-        if #val > 10 then
+        if #val > 15 then
             new_line = true
             break
         end
@@ -81,7 +85,7 @@ function f( v )
 
     if #vs > 0 then
         if new_line then
-            return table.concat( vs, ",\n" )
+            return table.concat( vs, ",\n" .. string.rep( "    ", tabs ) )
         else
             return table.concat( vs, ", " )
         end
