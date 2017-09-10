@@ -91,7 +91,12 @@ function bin_expr_helper( list, index )
     while try( list[index].name ) do
         es[#es+1] = bin_expr_helper( list, index + 1 ) 
     end
-    return { name = list[index].name; exprs = es }
+    
+    if  #es == 1 then
+        return e1
+    else
+        return { name = list[index].name; exprs = es }
+    end
 end
 
 function md_bin_expr()
