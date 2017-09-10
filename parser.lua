@@ -62,8 +62,12 @@ end
 
 function bin_expr()
 
-    local ops = { { name = "plus" }
-                , { name = "star" }
+    -- lowest on the list is highest binding priority.
+
+    local ops = { --{ name = "plus" }
+                 { name = "star" }
+                , { name = "star", uni = true }
+                , { name = "plus" }
                 , { name = "final" }
                 }
 
@@ -73,9 +77,7 @@ end
 
 function bin_expr_helper( list, index )
     local e1
-    print( "blah : " .. index )
     if list[index].name == "final" then
-        print( "final" )
         return expr() 
     elseif list[index].uni then
         if try( list[index].name ) then
