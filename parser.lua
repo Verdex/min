@@ -107,7 +107,7 @@ function expr()
     if false then
 
     elseif try( "lparen" ) then 
-        local e = expr()
+        local e = bin_expr()
         is( "rparen" )
         return e
     elseif try( "symbol" ) then
