@@ -64,13 +64,27 @@ function bin_expr()
 
     -- lowest on the list is highest binding priority.
 
-    local ops = { --{ name = "plus" }
-                 { name = "star", ast = "mult" }
-                , { name = "star", ast = "deref"; uni = true }
-                , { name = "plus", ast = "add"  }
-                , { name = "neg", ast = "neg"; uni = true }
-                , { name = "comp", ast = "comp"; uni = true  }
-                , { name = "not", ast = "not"; uni = true }
+    local ops = { { name = "lor", ast = "lor" }
+                , { name = "land", ast = "land" }
+                , { name = "bor", ast = "bor" }
+                , { name = "xor", ast = "xor" }
+                , { name = "band", ast = "band" }
+                , { name = "notequal", ast = "neq" }
+                , { name = "equal", ast = "eq" }
+                , { name = "lte", ast = "lte" }
+                , { name = "gte", ast = "gte" }
+                , { name = "rangle", ast = "gt" } 
+                , { name = "langle", ast = "lt" } 
+                , { name = "neg", ast = "sub" } 
+                , { name = "plus", ast = "add" }
+                , { name = "mod", ast = "mod" } 
+                , { name = "div", ast = "div" }
+                , { name = "star", ast = "mult" }
+                , { name = "star", ast = "deref", uni = true }
+                , { name = "band", ast = "ref", uni = true }
+                , { name = "neg", ast = "neg", uni = true }
+                , { name = "comp", ast = "comp", uni = true  }
+                , { name = "not", ast = "not", uni = true }
                 , { name = "final" }
                 }
 
