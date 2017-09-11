@@ -65,9 +65,12 @@ function bin_expr()
     -- lowest on the list is highest binding priority.
 
     local ops = { --{ name = "plus" }
-                 { name = "star" }
-                , { name = "star", uni = true }
-                , { name = "plus" }
+                 { name = "star", ast = "mult" }
+                , { name = "star", ast = "deref"; uni = true }
+                , { name = "plus", ast = "add"  }
+                , { name = "neg", ast = "neg"; uni = true }
+                , { name = "comp", ast = "comp"; uni = true  }
+                , { name = "not", ast = "not"; uni = true }
                 , { name = "final" }
                 }
 
@@ -81,7 +84,7 @@ function bin_expr_helper( list, index )
         return expr() 
     elseif list[index].uni then
         if try( list[index].name ) then
-            return { name = list[index].name; expr = bin_expr_helper( list, index + 1 ) }
+            return { name = list[index].ast; expr = bin_expr_helper( list, index + 1 ) }
         else
             return bin_expr_helper( list, index + 1 )
         end
@@ -97,7 +100,7 @@ function bin_expr_helper( list, index )
     if  #es == 1 then
         return e1
     else
-        return { name = list[index].name; exprs = es }
+        return { name = list[index].ast; exprs = es }
     end
 end
 
