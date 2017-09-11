@@ -61,6 +61,8 @@ function stm()
 end
 
 function bin_expr()
+    -- TODO x <= 5 <  6 == 8 | 7 parses incorrectly, so there's probably 
+    -- some precedence things that need to be done
 
     -- lowest on the list is highest binding priority.
 
