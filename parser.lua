@@ -118,6 +118,20 @@ function bin_expr_helper( list, index )
     end
 end
 
+function namespace_prefix_expr()
+    -- TODO
+end
+
+function member_access_expr()
+    -- TODO
+end
+
+function function_call_expr()
+    -- TODO
+end
+
+function extention_function_call_expr()
+
 function expr()
     local c = ct()
 
@@ -185,13 +199,28 @@ function var_stm()
     return { name = "assign"; var_name = var_name; assign_expr = assign_expr }
 end
 
+function function_def_stm()
+    -- TODO
+end
 
-function namespace_stm()
-    
+function enum_stm()
+    -- TODO
+end
+
+function union_stm()
+    -- TODO
+end
+
+function struct_stm()
+    -- TODO 
+end
+
+function namespace_stm() 
+    -- TODO 
 end
 
 function import_stm()
-    
+    -- TODO 
 end
 
 function if_stm()
