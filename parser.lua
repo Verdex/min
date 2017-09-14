@@ -185,6 +185,15 @@ function var_stm()
     return { name = "assign"; var_name = var_name; assign_expr = assign_expr }
 end
 
+
+function namespace_stm()
+    
+end
+
+function import_stm()
+    
+end
+
 function if_stm()
     
     local test = expr()
