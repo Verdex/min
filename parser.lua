@@ -111,7 +111,7 @@ function bin_expr_helper( list, index )
         es[#es+1] = bin_expr_helper( list, index + 1 ) 
     end
     
-    if  #es == 1 then
+    if #es == 1 then
         return e1
     else
         return { name = list[index].ast; exprs = es }
