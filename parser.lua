@@ -131,6 +131,16 @@ function function_call_expr()
 end
 
 function extention_function_call_expr()
+    -- TODO 
+end
+
+function lambda_expr()
+    -- TODO
+end
+
+function array_expr()
+    -- TODO
+end
 
 function expr()
     local c = ct()
@@ -221,6 +231,22 @@ end
 
 function import_stm()
     -- TODO 
+end
+
+function return_stm()
+    -- TODO
+end
+
+function break_stm()
+    -- TODO
+end
+
+function continue_stm()
+    -- TODO
+end
+
+function yield_stm()
+    -- TODO
 end
 
 function if_stm()
